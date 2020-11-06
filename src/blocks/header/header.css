@@ -1,0 +1,17 @@
+@import url(./__logo/header__logo.css);
+
+.header {
+  max-width: 100%;
+  min-height: 119px;
+  display: flex;
+  box-sizing: border-box;
+  border-bottom-style: solid;
+  border-bottom-color: rgba(84, 84, 84, 0.7);
+  border-bottom-width: 1px;
+}
+
+@media screen and (max-width: 567px) {
+  .header {
+    min-height: 84px;
+  }
+}

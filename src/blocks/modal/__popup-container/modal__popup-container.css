@@ -1,0 +1,24 @@
+.modal__popup-container {
+  width: auto;
+  max-width: 75vw;
+  height: 100%;
+  max-height: 75vh;
+  padding: 0;
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: 90px auto 90px;
+}
+
+.modal__popup-container:hover {
+  cursor: default;
+}
+
+@media screen and (max-width: 567px) {
+  .modal__popup-container {
+    
+    padding: 0;
+    margin: 136px auto 133px
+  }
+}
