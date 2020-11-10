@@ -1,6 +1,11 @@
 {
   "name": "mesto-react",
   "version": "0.1.0",
+  "description": "an interactive page for sharing photos",
+  "author": {
+    "name": "Marina Khudolei",
+    "email": "marinakhu@yandex.ru"
+  },
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",

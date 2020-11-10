@@ -1,5 +1,4 @@
 import React from "react";
-import "./Main.css";
 import PopupWithForm from "./PopupWithForm";
 import ImagePopup from "./ImagePopup";
 import api from "../utils/api";
@@ -36,7 +35,7 @@ const Main = ({ onEditProfile, onAddPlace, onEditAvatar, handleCardClick, isEdit
             }))));
         })
         .catch((err) => console.log(err));
-    }, []);
+    }, [handleCardClick]);
 
     return (
         <>
@@ -69,7 +68,7 @@ const Main = ({ onEditProfile, onAddPlace, onEditAvatar, handleCardClick, isEdit
                                 name="changeButton"
                                 aria-label="Изменить профиль"
                                 onClick={onEditProfile}
-                            ></button>
+                            />
                         </div>
                     </div>
                     <button
@@ -78,7 +77,7 @@ const Main = ({ onEditProfile, onAddPlace, onEditAvatar, handleCardClick, isEdit
                         name="addButton"
                         aria-label="Добавить карточку"
                         onClick={onAddPlace}
-                    ></button>
+                    />
                 </section>
                 <section className="places">
                     {cards.map(({id, ...props}) => <Card key={id} {...props}/>)}
@@ -109,7 +108,7 @@ const Main = ({ onEditProfile, onAddPlace, onEditAvatar, handleCardClick, isEdit
                         minLength="2"
                         required
                     />
-                    <span className="form__error" id="formName-error"></span>
+                    <span className="form__error" id="formName-error"/>
                 </label>
                 <label className="form__label">
                     <input
@@ -122,7 +121,7 @@ const Main = ({ onEditProfile, onAddPlace, onEditAvatar, handleCardClick, isEdit
                         minLength="2"
                         required
                     />
-                    <span className="form__error" id="formProf-error"></span>
+                    <span className="form__error" id="formProf-error"/>
                 </label>
             </PopupWithForm>
 
@@ -146,7 +145,7 @@ const Main = ({ onEditProfile, onAddPlace, onEditAvatar, handleCardClick, isEdit
                         minLength="1"
                         required
                     />
-                    <span className="form__error" id="formTitle-error"></span>
+                    <span className="form__error" id="formTitle-error"/>
                 </label>
                 <label className="form__label">
                     <input
@@ -161,7 +160,7 @@ const Main = ({ onEditProfile, onAddPlace, onEditAvatar, handleCardClick, isEdit
                     <span
                         className="form__error"
                         id="formImageLink-error"
-                    ></span>
+                    />
                 </label>
             </PopupWithForm>
 
@@ -194,33 +193,9 @@ const Main = ({ onEditProfile, onAddPlace, onEditAvatar, handleCardClick, isEdit
                     <span
                         className="form__error"
                         id="formAvatarLink-error"
-                    ></span>
+                    />
                 </label>
             </PopupWithForm>
-
-            <template id="card-template">
-                <div className="places__card card">
-                    <button
-                        type="button"
-                        className="card__delete-button"
-                        name="deleteButton"
-                        aria-label="Удалить карточку"
-                    ></button>
-                    <img className="card__image" src="#" alt="" />
-                    <div className="card__rating">
-                        <h2 className="card__title"></h2>
-                        <div className="card__likes">
-                            <button
-                                type="button"
-                                className="card__button"
-                                name="likeButton"
-                                aria-label="Поставить лайк"
-                            ></button>
-                            <p className="card__like">0</p>
-                        </div>
-                    </div>
-                </div>
-            </template>
         </>
     );
 };

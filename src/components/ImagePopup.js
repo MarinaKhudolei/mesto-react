@@ -10,7 +10,7 @@ function PopupWithImage({onClose, card}) {
                     name="popupCloseButton"
                     aria-label="Закрыть картинку"
                     onClick={onClose}
-                ></button>
+                />
                 <img className="modal__image" src={card != null ? card.link : '#'} alt={card != null ? card.alt : ''} />
                 <figcaption className="modal__caption">{card != null ? card.name : ''}</figcaption>
             </figure>

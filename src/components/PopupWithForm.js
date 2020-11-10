@@ -37,7 +37,7 @@ function PopupWithForm({
                     name={`${formName}CloseButton`}
                     aria-label="Закрыть форму"
                     onClick={onClose}
-                ></button>
+                />
             </div>
         </div>
     );
