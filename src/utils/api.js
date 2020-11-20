@@ -32,8 +32,8 @@ class Api {
             method: "POST",
             headers: this._headers,
             body: JSON.stringify({
-                name: data.formTitle,
-                link: data.formImageLink,
+                name: data.name,
+                link: data.link,
             }),
         }).then((res) => {
             if (res.ok) {
@@ -60,8 +60,8 @@ class Api {
             method: "PATCH",
             headers: this._headers,
             body: JSON.stringify({
-                name: data.formName,
-                about: data.formProf,
+                name: data.name,
+                about: data.about,
             })
         }).then((res) => {
             if (res.ok) {
@@ -76,7 +76,7 @@ class Api {
             method: "PATCH",
             headers: this._headers,
             body: JSON.stringify({
-                avatar: data.formAvatarLink
+                avatar: data.avatar
             })
         }).then((res) => {
             if (res.ok) {
@@ -86,28 +86,28 @@ class Api {
         })
     }
 
-    addLike(cardId) {
-        return fetch(`${this._url}cards/likes/${cardId}`, {
-            method: "PUT",
-            headers: this._headers,
-        }).then((res) => {
-            if (res.ok) {
-                return res.json();
-            }
-            return Promise.reject('Произошла ошибка');
-        });
-    }
-
-    removeLike(cardId) {
-        return fetch(`${this._url}cards/likes/${cardId}`, {
-            method: "DELETE",
-            headers: this._headers,
-        }).then((res) => {
-            if (res.ok) {
-                return res.json();
-            }
-            return Promise.reject('Произошла ошибка');
-        });
+    changeLikeCardStatus(cardId, state) {
+        if(state) {
+            return fetch(`${this._url}cards/likes/${cardId}`, {
+                method: "PUT",
+                headers: this._headers,
+            }).then((res) => {
+                if (res.ok) {
+                    return res.json();
+                }
+                return Promise.reject('Произошла ошибка');
+            });  
+        } else {
+            return fetch(`${this._url}cards/likes/${cardId}`, {
+                method: "DELETE",
+                headers: this._headers,
+            }).then((res) => {
+                if (res.ok) {
+                    return res.json();
+                }
+                return Promise.reject('Произошла ошибка');
+            });
+        }
     }
 }
 

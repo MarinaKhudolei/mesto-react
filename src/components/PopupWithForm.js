@@ -7,11 +7,14 @@ function PopupWithForm({
     buttonTitle,
     children,
     isOpen,
-    onClose
+    onClose,
+    onSubmit,
 }) {
     return (
         <div
-            className={`modal modal_type_${name} ${isOpen ? 'modal_opened' : ''}`}
+            className={`modal modal_type_${name} ${
+                isOpen ? "modal_opened" : ""
+            }`}
         >
             <div className="modal__container">
                 <h3 className="modal__title">{title}</h3>
@@ -20,6 +23,7 @@ function PopupWithForm({
                     name={`${formName}Form`}
                     id={`${formName}Form`}
                     noValidate
+                    onSubmit={onSubmit}
                 >
                     {children}
                     <button
