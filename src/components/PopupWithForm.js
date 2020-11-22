@@ -11,11 +11,7 @@ function PopupWithForm({
     onSubmit,
 }) {
     return (
-        <div
-            className={`modal modal_type_${name} ${
-                isOpen ? "modal_opened" : ""
-            }`}
-        >
+        <div className={`modal modal_type_${name} ${isOpen && "modal_opened"}`}>
             <div className="modal__container">
                 <h3 className="modal__title">{title}</h3>
                 <form

@@ -4,27 +4,24 @@ class Api {
         this._headers = config.headers;
     }
 
+    _getResponseData(res) {
+        if (res.ok) {
+            return res.json();
+        }
+        return Promise.reject(new Error(`Ошибка: ${res.status}`));
+    }
+
     getAllCards() {
         return fetch(`${this._url}cards`, {
             headers: this._headers,
-        }).then((res) => {
-            if (res.ok) {
-                return res.json();
-            }
-            return Promise.reject('Произошла ошибка');
-        });
+        }).then(this._getResponseData);
     }
 
     deleteCard(id) {
         return fetch(`${this._url}cards/${id}`, {
             method: "DELETE",
             headers: this._headers,
-        }).then((res) => {
-            if (res.ok) {
-                return res.json();
-            }
-            return Promise.reject('Произошла ошибка');
-        });
+        }).then(this._getResponseData);
     }
 
     addCard(data) {
@@ -35,24 +32,14 @@ class Api {
                 name: data.name,
                 link: data.link,
             }),
-        }).then((res) => {
-            if (res.ok) {
-                return res.json();
-            }
-            return Promise.reject('Произошла ошибка');
-        });
+        }).then(this._getResponseData);
     }
 
     setProfileInfo() {
         return fetch(`${this._url}users/me`, {
             method: "GET",
             headers: this._headers,
-        }).then((res) => {
-            if (res.ok) {
-                return res.json();
-            }
-            return Promise.reject('Произошла ошибка');
-        });
+        }).then(this._getResponseData);
     }
 
     changeProfileInfo(data) {
@@ -62,13 +49,8 @@ class Api {
             body: JSON.stringify({
                 name: data.name,
                 about: data.about,
-            })
-        }).then((res) => {
-            if (res.ok) {
-                return res.json();
-            }
-            return Promise.reject('Произошла ошибка');
-        })
+            }),
+        }).then(this._getResponseData);
     }
 
     changeAvatar(data) {
@@ -76,37 +58,22 @@ class Api {
             method: "PATCH",
             headers: this._headers,
             body: JSON.stringify({
-                avatar: data.avatar
-            })
-        }).then((res) => {
-            if (res.ok) {
-                return res.json();
-            }
-            return Promise.reject('Произошла ошибка');
-        })
+                avatar: data.avatar,
+            }),
+        }).then(this._getResponseData);
     }
 
     changeLikeCardStatus(cardId, state) {
-        if(state) {
+        if (state) {
             return fetch(`${this._url}cards/likes/${cardId}`, {
                 method: "PUT",
                 headers: this._headers,
-            }).then((res) => {
-                if (res.ok) {
-                    return res.json();
-                }
-                return Promise.reject('Произошла ошибка');
-            });  
+            }).then(this._getResponseData);
         } else {
             return fetch(`${this._url}cards/likes/${cardId}`, {
                 method: "DELETE",
                 headers: this._headers,
-            }).then((res) => {
-                if (res.ok) {
-                    return res.json();
-                }
-                return Promise.reject('Произошла ошибка');
-            });
+            }).then(this._getResponseData);
         }
     }
 }

@@ -12,10 +12,13 @@ const Main = ({
     selectedCard,
     onClose,
     cards,
+    handleCardClick,
+    handleCardLike,
+    handleCardDelete,
 }) => {
     /**bind the context */
     const currentUser = React.useContext(CurrentUserContext);
-    
+
     return (
         <>
             <main className="content">
@@ -63,8 +66,14 @@ const Main = ({
                     />
                 </section>
                 <section className="places">
-                    {cards.map((props) => (
-                        <Card key={props._id} {...props} />
+                    {cards.map((card) => (
+                        <Card
+                            key={card._id}
+                            card={card}
+                            onCardClick={handleCardClick}
+                            onCardLike={handleCardLike}
+                            onCardDelete={handleCardDelete}
+                        />
                     ))}
                 </section>
             </main>

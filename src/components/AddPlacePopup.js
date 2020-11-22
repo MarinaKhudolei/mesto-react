@@ -1,18 +1,15 @@
 import React from "react";
 import PopupWithForm from "./PopupWithForm";
 
-function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
-    const [title, setTitle] = React.useState("");
-    const [link, setLink] = React.useState("");
-
-    function handleTitleChange(e) {
-        setTitle(e.target.value);
-    }
-
-    function handleLinkChange(e) {
-        setLink(e.target.value);
-    }
-
+function AddPlacePopup({
+    isOpen,
+    onClose,
+    onAddPlace,
+    title,
+    link,
+    handleTitleChange,
+    handleLinkChange,
+}) {
     function handleSubmit(e) {
         e.preventDefault();
 
@@ -20,8 +17,6 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
             name: title,
             link: link,
         });
-
-        onClose();
     }
 
     return (
@@ -38,7 +33,7 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
                 <input
                     className="form__item form__item_type_title"
                     type="text"
-                    title={title || ""}
+                    value={title || ""}
                     onChange={handleTitleChange}
                     placeholder="Название"
                     name="formTitle"
@@ -53,7 +48,7 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
                 <input
                     className="form__item form__item_type_image-link"
                     type="url"
-                    link={link || ""}
+                    value={link || ""}
                     onChange={handleLinkChange}
                     placeholder="Ссылка на картинку"
                     name="formImageLink"

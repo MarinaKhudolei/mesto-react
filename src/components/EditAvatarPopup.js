@@ -1,21 +1,19 @@
 import React from "react";
 import PopupWithForm from "./PopupWithForm";
 
-function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
-    const [avatar, setAvatar] = React.useState("");
-
-    function handleChange(e) {
-        setAvatar(e.target.value);
-    }
-
+function EditAvatarPopup({
+    isOpen,
+    onClose,
+    onUpdateAvatar,
+    avatar,
+    handleAvatarChange,
+}) {
     function handleSubmit(e) {
         e.preventDefault();
 
         onUpdateAvatar({
             avatar: avatar,
         });
-
-        onClose();
     }
 
     return (
@@ -33,7 +31,7 @@ function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
                     className="form__item form__item_type_avatar-link"
                     type="url"
                     value={avatar || ""}
-                    onChange={handleChange}
+                    onChange={handleAvatarChange}
                     placeholder="Ссылка на аватар"
                     name="formAvatarLink"
                     id="formAvatarLink"
