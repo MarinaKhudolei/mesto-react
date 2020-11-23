@@ -5,9 +5,12 @@ function EditAvatarPopup({
     isOpen,
     onClose,
     onUpdateAvatar,
-    avatar,
-    handleAvatarChange,
 }) {
+    const [avatar, setAvatar] = React.useState("");
+
+    function handleAvatarChange(e) {
+        setAvatar(e.target.value);
+    }
     function handleSubmit(e) {
         e.preventDefault();
 

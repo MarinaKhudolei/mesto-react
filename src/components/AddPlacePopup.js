@@ -5,11 +5,18 @@ function AddPlacePopup({
     isOpen,
     onClose,
     onAddPlace,
-    title,
-    link,
-    handleTitleChange,
-    handleLinkChange,
 }) {
+    const [title, setTitle] = React.useState("");
+    const [link, setLink] = React.useState("");
+    
+    function handleTitleChange(e) {
+        setTitle(e.target.value);
+    }
+
+    function handleLinkChange(e) {
+        setLink(e.target.value);
+    }
+
     function handleSubmit(e) {
         e.preventDefault();
 

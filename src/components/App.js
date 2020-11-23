@@ -22,39 +22,6 @@ function App() {
     const [currentUser, setCurrentUser] = React.useState({});
     const [cards, setCards] = React.useState([]);
 
-    const [title, setTitle] = React.useState("");
-    const [link, setLink] = React.useState("");
-
-    const [avatar, setAvatar] = React.useState("");
-
-    const [name, setName] = React.useState("");
-    const [description, setDescription] = React.useState("");
-
-    React.useEffect(() => {
-        setName(currentUser.name);
-        setDescription(currentUser.about);
-    }, [currentUser]);
-
-    function handleNameChange(e) {
-        setName(e.target.value);
-    }
-
-    function handleDescriptionChange(e) {
-        setDescription(e.target.value);
-    }
-
-    function handleAvatarChange(e) {
-        setAvatar(e.target.value);
-    }
-
-    function handleTitleChange(e) {
-        setTitle(e.target.value);
-    }
-
-    function handleLinkChange(e) {
-        setLink(e.target.value);
-    }
-
     /**change profile info*/
     const handleUpdateUser = (data) => {
         api.changeProfileInfo(data)
@@ -67,19 +34,14 @@ function App() {
 
     /**handle popup openings*/
     const handleEditAvatarClick = () => {
-        setAvatar("");
         setIsEditAvatarPopupOpen(true);
     };
 
     const handleEditProfileClick = () => {
-        setName(currentUser.name);
-        setDescription(currentUser.about);
         setIsEditProfilePopupOpen(true);
     };
 
     const handleAddPlaceClick = () => {
-        setTitle("");
-        setLink("");
         setIsAddPlacePopupOpen(true);
     };
 
@@ -177,26 +139,16 @@ function App() {
                         isOpen={isEditProfilePopupOpen}
                         onClose={closeAllPopups}
                         onUpdateUser={handleUpdateUser}
-                        name={name}
-                        description={description}
-                        handleNameChange={handleNameChange}
-                        handleDescriptionChange={handleDescriptionChange}
                     />
                     <EditAvatarPopup
                         isOpen={isEditAvatarPopupOpen}
                         onClose={closeAllPopups}
                         onUpdateAvatar={handleUpdateAvatar}
-                        avatar={avatar}
-                        handleAvatarChange={handleAvatarChange}
                     />
                     <AddPlacePopup
                         isOpen={isAddPlacePopupOpen}
                         onClose={closeAllPopups}
                         onAddPlace={handleAddPlaceSubmit}
-                        title={title}
-                        link={link}
-                        handleTitleChange={handleTitleChange}
-                        handleLinkChange={handleLinkChange}
                     />
                 </div>
             </div>
